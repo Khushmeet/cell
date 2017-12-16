@@ -9,7 +9,6 @@ forms           : literal
 
 literal         : string
                 | number
-                | character
                 | bool
                 | symbol
                 | list
@@ -31,9 +30,6 @@ string          : STRING
 
 number          : FLOAT
                 | INT
-                ;
-
-character       :
                 ;
 
 bool            : TRUE
