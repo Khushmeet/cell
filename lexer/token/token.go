@@ -14,6 +14,7 @@ const (
 	ILLEGAL TokenType = iota
 	EOF
 
+	// operators
 	EQUAL
 	PLUS
 	MULTIPLICATION
@@ -24,8 +25,6 @@ const (
 	LEFT_BRACKET
 	RIGHT_BRACKET
 
-	IDENTIFIER
-
 	// keywords
 	FUNCTION_DEF
 	LET
@@ -34,6 +33,8 @@ const (
 	LOOP
 	TRUE
 	FALSE
+
+	IDENTIFIER
 
 	INT
 	STRING
@@ -52,4 +53,12 @@ var keywords = map[string]TokenType{
 // NewToken generates token upon seeing a character from input
 func NewToken(tokenType TokenType, ch byte) Token {
 	return Token{Type: tokenType, Literal: string(ch)}
+}
+
+// CheckForKeyword if the identifier is a keyword, if yes then return's its TokenType
+func CheckForKeyword(ch string) TokenType {
+	if tokenType, ok := keywords[ch]; ok {
+		return tokenType
+	}
+	return IDENTIFIER
 }
