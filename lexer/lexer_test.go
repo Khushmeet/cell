@@ -44,9 +44,11 @@ func TestLexer(t *testing.T) {
 
 	tests := []lexerTest{
 		{token.LEFT_PAREN, "("},
+		{token.LET, "let"},
 		{token.IDENTIFIER, "x"},
 		{token.INT, "14"},
 		{token.RIGHT_PAREN, ")"},
+		{token.LEFT_PAREN, "("},
 		{token.FUNCTION_DEF, "fn"},
 		{token.IDENTIFIER, "fact"},
 		{token.LEFT_BRACKET, "["},
@@ -136,13 +138,12 @@ func TestLexer(t *testing.T) {
 
 		if nextToken.Type != tt.expectedType {
 			t.Fatalf(`Test [%d] - TokenType wrong.
-					  Expected = %q, got = %q`, i, tt.expectedType, nextToken.Type)
+					  Expected = %v, got = %v`, i, tt.expectedType, nextToken.Type)
 		}
 
 		if nextToken.Literal != tt.expectedLiteral {
 			t.Fatalf(`Test [%d] - TokenLiteral wrong.
-					  Expected = %q, got = %q`, i, tt.expectedLiteral, nextToken.Literal)
+					  Expected = %v, got = %v`, i, tt.expectedLiteral, nextToken.Literal)
 		}
-
 	}
 }
