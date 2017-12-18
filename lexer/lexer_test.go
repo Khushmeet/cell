@@ -35,6 +35,11 @@ func TestLexer(t *testing.T) {
 		)
 	)
 
+	(if true
+		(+ 1 4)
+		(- 1 4)
+	)
+
 	`
 
 	tests := []lexerTest{
@@ -42,13 +47,13 @@ func TestLexer(t *testing.T) {
 		{token.IDENTIFIER, "x"},
 		{token.INT, "14"},
 		{token.RIGHT_PAREN, ")"},
-		{token.KEYWORD, "fn"},
+		{token.FUNCTION_DEF, "fn"},
 		{token.IDENTIFIER, "fact"},
 		{token.LEFT_BRACKET, "["},
 		{token.IDENTIFIER, "x"},
 		{token.RIGHT_BRACKET, "]"},
 		{token.LEFT_PAREN, "("},
-		{token.KEYWORD, "if"},
+		{token.IF, "if"},
 		{token.LEFT_PAREN, "("},
 		{token.EQUAL, "="},
 		{token.IDENTIFIER, "x"},
@@ -77,13 +82,13 @@ func TestLexer(t *testing.T) {
 		{token.INT, "4"},
 		{token.RIGHT_PAREN, ")"},
 		{token.LEFT_PAREN, "("},
-		{token.KEYWORD, "fn"},
+		{token.FUNCTION_DEF, "fn"},
 		{token.IDENTIFIER, "testCond"},
 		{token.LEFT_BRACKET, "["},
 		{token.IDENTIFIER, "t"},
 		{token.RIGHT_BRACKET, "]"},
 		{token.LEFT_PAREN, "("},
-		{token.KEYWORD, "cond"},
+		{token.CONDITIONAL, "cond"},
 		{token.LEFT_PAREN, "("},
 		{token.LEFT_PAREN, "("},
 		{token.EQUAL, "="},
@@ -91,7 +96,7 @@ func TestLexer(t *testing.T) {
 		{token.IDENTIFIER, "1"},
 		{token.RIGHT_PAREN, ")"},
 		{token.LEFT_PAREN, "("},
-		{token.KEYWORD, "print"},
+		{token.IDENTIFIER, "print"},
 		{token.STRING, "\"A\""},
 		{token.RIGHT_PAREN, ")"},
 		{token.RIGHT_PAREN, ")"},
@@ -102,10 +107,24 @@ func TestLexer(t *testing.T) {
 		{token.IDENTIFIER, "4"},
 		{token.RIGHT_PAREN, ")"},
 		{token.LEFT_PAREN, "("},
-		{token.KEYWORD, "print"},
+		{token.IDENTIFIER, "print"},
 		{token.STRING, "\"B\""},
 		{token.RIGHT_PAREN, ")"},
 		{token.RIGHT_PAREN, ")"},
+		{token.RIGHT_PAREN, ")"},
+		{token.RIGHT_PAREN, ")"},
+		{token.LEFT_PAREN, "("},
+		{token.IF, "if"},
+		{token.TRUE, "true"},
+		{token.LEFT_PAREN, "("},
+		{token.PLUS, "+"},
+		{token.INT, "1"},
+		{token.INT, "4"},
+		{token.RIGHT_PAREN, ")"},
+		{token.LEFT_PAREN, "("},
+		{token.MINUS, "-"},
+		{token.INT, "1"},
+		{token.INT, "4"},
 		{token.RIGHT_PAREN, ")"},
 		{token.RIGHT_PAREN, ")"},
 	}

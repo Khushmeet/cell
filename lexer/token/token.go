@@ -25,11 +25,29 @@ const (
 	RIGHT_BRACKET
 
 	IDENTIFIER
-	KEYWORD
+
+	// keywords
+	FUNCTION_DEF
+	LET
+	CONDITIONAL
+	IF
+	LOOP
+	TRUE
+	FALSE
 
 	INT
 	STRING
 )
+
+var keywords = map[string]TokenType{
+	"fn":    FUNCTION_DEF,
+	"let":   LET,
+	"if":    IF,
+	"cond":  CONDITIONAL,
+	"loop":  LOOP,
+	"true":  TRUE,
+	"false": FALSE,
+}
 
 // NewToken generates token upon seeing a character from input
 func NewToken(tokenType TokenType, ch byte) Token {
