@@ -13,7 +13,7 @@ type Token struct {
 const (
 	ILLEGAL TokenType = iota
 	EOF
-	IDENTIFIER
+
 	EQUAL
 	PLUS
 	MULTIPLICATION
@@ -21,8 +21,17 @@ const (
 	DIVISION
 	LEFT_PAREN
 	RIGHT_PAREN
+	LEFT_BRACKET
+	RIGHT_BRACKET
+
+	IDENTIFIER
+	KEYWORD
+
+	INT
+	STRING
 )
 
+// NewToken generates token upon seeing a character from input
 func NewToken(tokenType TokenType, ch byte) Token {
 	return Token{Type: tokenType, Literal: string(ch)}
 }
