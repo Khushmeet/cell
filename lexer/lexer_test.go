@@ -2,6 +2,7 @@ package lexer
 
 import (
 	"cell/lexer/token"
+	"fmt"
 	"testing"
 )
 
@@ -27,10 +28,10 @@ func TestLexer(t *testing.T) {
 	(fn testCond [t]
 		(cond
 			((= t 1)
-				(print "A")
+				(print A)
 			)
 			((= t 4)
-				(print "B")
+				(print B)
 			)
 		)
 	)
@@ -95,22 +96,22 @@ func TestLexer(t *testing.T) {
 		{token.LEFT_PAREN, "("},
 		{token.EQUAL, "="},
 		{token.IDENTIFIER, "t"},
-		{token.IDENTIFIER, "1"},
+		{token.INT, "1"},
 		{token.RIGHT_PAREN, ")"},
 		{token.LEFT_PAREN, "("},
 		{token.IDENTIFIER, "print"},
-		{token.STRING, "\"A\""},
+		{token.IDENTIFIER, "A"},
 		{token.RIGHT_PAREN, ")"},
 		{token.RIGHT_PAREN, ")"},
 		{token.LEFT_PAREN, "("},
 		{token.LEFT_PAREN, "("},
 		{token.EQUAL, "="},
 		{token.IDENTIFIER, "t"},
-		{token.IDENTIFIER, "4"},
+		{token.INT, "4"},
 		{token.RIGHT_PAREN, ")"},
 		{token.LEFT_PAREN, "("},
 		{token.IDENTIFIER, "print"},
-		{token.STRING, "\"B\""},
+		{token.IDENTIFIER, "B"},
 		{token.RIGHT_PAREN, ")"},
 		{token.RIGHT_PAREN, ")"},
 		{token.RIGHT_PAREN, ")"},
@@ -135,6 +136,10 @@ func TestLexer(t *testing.T) {
 
 	for i, tt := range tests {
 		nextToken := l.NextToken()
+		if i == 52 {
+			fmt.Printf("%v\n", tt)
+			fmt.Printf("%v\n", nextToken)
+		}
 
 		if nextToken.Type != tt.expectedType {
 			t.Fatalf(`Test [%d] - TokenType wrong.

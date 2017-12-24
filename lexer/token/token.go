@@ -37,7 +37,7 @@ const (
 	IDENTIFIER
 
 	INT
-	STRING
+	STRING // Unused
 )
 
 var keywords = map[string]TokenType{
